@@ -32,19 +32,21 @@ local function mainLoop(score)
     elseif player == "scissors" and AIc == "paper" then
         print("player wins");
         score[1] = score[1] + 1
+    elseif player == AIc then
+        print("tie, nobody gets points")
     else
         print("AI wins")
         score[2] = score[2] + 1
     end
 
-    print("score is AI:" .. score[1] .. " player:" .. score[2])
+    print("score is AI:" .. score[2] .. " player:" .. score[1])
 
     local again;
 
     repeat 
         print("do you want to play again? (y, n)")
         again = io.read()
-    until (not (again == "y" and again == "n"))
+    until (not (again ~= "y" and again ~= "n"))
     
     if again == "y" then
         mainLoop(score)
